@@ -3,8 +3,6 @@ const menuList = document.getElementById('menu-list');
 
 menuBtn.addEventListener('click', () => {
     menuList.classList.toggle('hidden');
-
-
     if (menuBtn.getAttribute("name") === "menu-outline") {
         menuBtn.setAttribute("name", "close-outline");
     } else {
