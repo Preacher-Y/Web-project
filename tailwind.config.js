@@ -5,6 +5,10 @@ module.exports = {
     extend: {
       screens: {
       }
+      colors: {
+        beige: '#EFECEA',
+        darkGreen: '#00672E',
+      },
     },
   },
   plugins: [],
