@@ -19,7 +19,7 @@
     }
 
     window.onload = () => {
-        loadComponents('header', 'src/sections/header.html', () =>{
+        loadComponents('header', '/', () =>{
             const script = document.createElement('script');
             script.src = '/src/sections/menu.js';
             document.body.appendChild(script)
