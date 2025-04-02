@@ -1,31 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <link rel="stylesheet" href="/dist/output.css">
-    <title>Website project template</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Outfit:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <title>Baumeister | Home</title>
 </head>
 <script>
-    const loadComponents = (id, url) =>  {
+    const loadComponents = (id, url, callback) => {
         fetch(url)
-        .then((response) => response.text())
-        .then((html) => {
-            document.getElementById(id).innerHTML = html;
-        });
+            .then((response) => response.text())
+            .then((html) => {
+                document.getElementById(id).innerHTML = html;
+                if (callback) callback();
+            });
     }
 
     window.onload = () => {
-        loadComponents('header', 'src/sections/header.html');
+        loadComponents('header', '/src/sections/header.html', () => {
+            const script = document.createElement('script');
+            script.src = '/src/sections/menu.js';
+            document.body.appendChild(script)
+        });
         loadComponents('hero', 'src/sections/hero.html');
         loadComponents('contact', 'src/sections/contact.html');
         loadComponents('footer', 'src/sections/footer.html');
+
     }
+
+
 </script>
-<body>
+
+<body class="bg-beige">
+
     <div id="header"></div>
     <div id="hero"></div>
     <div id="contact"></div>
-    <div id="footer"></div>
+    <footer id="footer"></footer>
 </body>
+
 </html>
