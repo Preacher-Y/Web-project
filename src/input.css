@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+.bg {
+    background-image: url('/src/img/Vector 5.svg');
+    background-repeat: no-repeat;
+    background-position-y: 0px;
+    background-size: 100%;
+  }
+  
+  @media (min-width: 1024px) {
+    .bg {
+      background-position-y: 20px;
+    }
+  }

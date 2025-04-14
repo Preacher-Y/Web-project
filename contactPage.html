@@ -8,19 +8,33 @@
     <title>Baumeister | Contact Us</title>
 </head>
 <script>
-    const loadComponents = (id, url) =>  {
-        fetch(url)
+    const loadComponents = (id, url, callback) => {
+    fetch(url)
         .then((response) => response.text())
         .then((html) => {
-            document.getElementById(id).innerHTML = html;
+        document.getElementById(id).innerHTML = html;
+        if (callback) callback(); // This ensures the next step runs AFTER DOM insertion
         });
-    }
+    };
+
 
     window.onload = () => {
-        loadComponents('header', 'src/sections/header.html');
-        loadComponents('contact', 'src/sections/contact.html');
-        loadComponents('footer', 'src/sections/footer.html');
-    }
+    loadComponents('header', '/src/sections/header.html', () => {
+        const script = document.createElement('script');
+        script.src = '/src/sections/menu.js';
+        script.onload = () => {
+            if (typeof initializeMenu === 'function') {
+                initializeMenu();
+            } else {
+                console.error('initializeMenu not defined');
+            }
+        };
+        document.body.appendChild(script);
+    });
+
+    loadComponents('contact', '/src/sections/contact.html');
+    loadComponents('footer', '/src/sections/footer.html');
+    };
 </script>
 <body class="bg-beige min-h-screen text-darkGreen">
     <div id="header"></div>
